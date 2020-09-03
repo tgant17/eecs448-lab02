@@ -44,6 +44,10 @@ bool LinkedList<T>::search(T value) const
 	/** TODO 
 		Fix this method
 	*/
+	if(isEmpty())
+	{
+		return(false); 
+	}
 	while(temp != nullptr)
 	{
 		if(temp->getValue() == value) 
@@ -114,8 +118,19 @@ bool LinkedList<T>::removeBack()
 	/** TODO 
 		Fix this method
 	*/
-
-	return(isRemoved);
+	if(!isEmpty())
+	{
+		secondintoLast = m_front; 
+		for(int i = 1; i < m_size-1; i++) //goes to the last node
+		{
+			secondintoLast = secondintoLast->getNext(); 
+		}
+		lastNode = secondintoLast->getNext(); 
+		secondintoLast->setNext(nullptr);
+		delete lastNode; 
+		m_size--;
+	}
+		return(isRemoved);
 }	
 
 template <typename T>
